@@ -34,5 +34,8 @@ module NgReviews
 
     config.assets.enabled = false
 
+    config.generators.assets = false
+    config.generators.helper = false
+
   end
 end
