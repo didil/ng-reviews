@@ -1,0 +1,19 @@
+<h2>Live Stream</h2>
+<div class="row">
+  <div class="col-md-4 review-animate" ng-repeat="review in reviews | orderByPriority |orderBy:'-createdAt'">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{review.productName}}</h3>
+      </div>
+      <div class="panel-body review_body">
+        Quality: {{review.quality}} / 5
+        <br>
+        Design: {{review.design}} / 5
+        <br>
+        Price: {{review.price}} / 5
+        <br>
+        <span class="review_created_at label label-success" am-time-ago="review.createdAt"></span>
+      </div>
+    </div>
+  </div>
+</div>

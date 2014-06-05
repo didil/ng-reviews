@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Welcome to ng-reviews</h1>
+
+    <p class="lead">Choose the product you'd like to review</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 product_container" ng-repeat="product in products ">
+
+    <a href ui-sref="reviews.new({ productId: product.id })">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{product.name}}</h3>
+        </div>
+        <div class="panel-body review_body">
+          <img ng-src="{{product.imageUrl}}" class="img-responsive center-block img-thumbnail"/>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>

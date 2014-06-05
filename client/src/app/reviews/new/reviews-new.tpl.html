@@ -1,0 +1,36 @@
+  <div class="row">
+    <div class="col-md-6">
+      <form class="form-horizontal" novalidate>
+        <fieldset>
+          <legend>Rate the product:</legend>
+
+          <div class="form-group">
+            <label for="review_quality" class="col-lg-2 control-label review_rating_label">Quality</label>
+            <div class="col-lg-10">
+              <rating id="review_quality" class="review_rating" name="quality" ng-model="review.quality" max="5" required></rating>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="review_design" class="col-lg-2 control-label review_rating_label">Design</label>
+            <div class="col-lg-10">
+              <rating id="review_design" class="review_rating" name="design" ng-model="review.design" max="5" required ></rating>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="review_price" class="col-lg-2 control-label review_rating_label">Price</label>
+            <div class="col-lg-10">
+              <rating id="review_price" class="review_rating" name="price" ng-model="review.price" max="5" required></rating>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <button class="btn btn-primary" ng-click="save()">Submit</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
