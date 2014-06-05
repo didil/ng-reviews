@@ -1,5 +1,5 @@
 /**
- * ng-reviews - v0.1.0 - 2014-06-02
+ * ng-reviews - v1.0.0 - 2014-06-05
  * https://github.com/didil/ng-reviews
  *
  * Copyright (c) 2014 Adil Haritah
