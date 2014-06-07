@@ -11,7 +11,7 @@ angular.module('ngReviews.reviews.new', [
       data: { pageTitle: 'New Review' },
       resolve: {
         product: ['$stateParams', 'Product', function ($stateParams, Product) {
-          return Product.get({id: $stateParams.productId});
+          return Product.get($stateParams.productId);
         }]
       }
     });

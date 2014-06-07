@@ -544,11 +544,23 @@ module.exports = function (grunt) {
         options: {
           port: 8000,
           base: 'build',
-          keepalive: true
+          logger: 'dev',
+          keepalive: true,
+          middleware: function (connect, options) {
+            var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
+            return [
+              // Include the proxy first
+              proxy,
+              // Serve static files.
+              connect.static(String(options.base)),
+              // Make empty directories browsable.
+              connect.directory(String(options.base))
+            ];
+          }
         },
         proxies: [
           {
-            context: '/api/v1',
+            context: '/api',
             host: 'localhost',
             port: 3100,
             https: false,
@@ -657,6 +669,14 @@ module.exports = function (grunt) {
         });
       }
     });
+  });
+
+
+  grunt.registerTask('server', function (target) {
+    grunt.task.run([
+      'configureProxies:server',
+      'connect'
+    ]);
   });
 
 };

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  scope module: 'api' do
+  namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :products
     end

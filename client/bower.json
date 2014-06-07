@@ -12,5 +12,7 @@
     "angularfire": "~0.7.1",
     "angular-moment": "~0.7.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "angularjs-rails-resource": "~1.2.0"
+  }
 }

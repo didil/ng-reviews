@@ -72,7 +72,8 @@ module.exports = {
       'vendor/firebase/firebase.js',
       'vendor/angularfire/angularfire.js',
       'vendor/moment/moment.js',
-      'vendor/angular-moment/angular-moment.js'
+      'vendor/angular-moment/angular-moment.js',
+      'vendor/angularjs-rails-resource/angularjs-rails-resource.js'
     ],
     css: [
     ],

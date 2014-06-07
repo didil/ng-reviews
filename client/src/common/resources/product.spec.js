@@ -1,7 +1,7 @@
 describe('product resource', function () {
   beforeEach(module('resources.product'));
 
-  function compareToProduct1(product){
+  /*function compareToProduct1(product){
     expect(product.id).to.equal(1);
     expect(product.name).to.equal("Grado PS1000 Pro Series Headphone");
     expect(product.imageUrl).to.equal("assets/41GzNqk3xrL._AA160_.jpg");
@@ -18,5 +18,5 @@ describe('product resource', function () {
     var product = Product.get({id:1});
 
     compareToProduct1(product);
-  }));
+  }));*/
 });

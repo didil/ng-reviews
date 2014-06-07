@@ -47,11 +47,13 @@ describe('new review section', function () {
 
   describe('/reviews/new', function () {
     var $rootScope, $state, $injector, state = 'reviews.new';
-    var Product = {};
+    var Product = { get : function(){}};
     var product = {};
     var productId = 5;
 
     beforeEach(function () {
+      sinon.stub(Product,"get").withArgs(3).returns(product);
+
       module(function ($provide) {
         $provide.value('Product', Product);
       });
@@ -71,10 +73,9 @@ describe('new review section', function () {
     });
 
     it('should resolve data', function () {
-      Product.get = sinon.stub().withArgs({id: productId}).returns(product);
 
       $rootScope.$apply(function () {
-        $state.go(state);
+        $state.go(state, {productId: productId});
       });
 
       expect($state.current.name).to.equal(state);
