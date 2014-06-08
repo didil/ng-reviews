@@ -8,6 +8,7 @@ gem 'pg'
 gem 'active_model_serializers', '~> 0.8.1'
 gem 'cancancan', '~> 1.8.1'
 gem 'rolify' , '~> 3.2.0'
+gem 'newrelic_rpm'
 
 group :development do
   gem 'better_errors'

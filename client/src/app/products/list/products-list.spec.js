@@ -16,12 +16,15 @@ describe('products section', function () {
 
   describe('/products/list', function () {
     var $rootScope, $state, $injector, state = 'products.list';
-    var Product = {};
     var products = {};
 
     beforeEach(function () {
       module(function ($provide) {
-        $provide.value('Product', Product);
+        $provide.value('Product', {
+          query: function () {
+            return products;
+          }
+        });
       });
 
       inject(function (_$rootScope_, _$state_, _$injector_, $templateCache) {
@@ -39,9 +42,7 @@ describe('products section', function () {
     });
 
     it('should resolve data', function () {
-      Product.query = sinon.stub().returns(products);
-
-      $rootScope.$apply(function(){
+      $rootScope.$apply(function () {
         $state.go(state);
       });
 

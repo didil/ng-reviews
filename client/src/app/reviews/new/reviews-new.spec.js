@@ -47,15 +47,18 @@ describe('new review section', function () {
 
   describe('/reviews/new', function () {
     var $rootScope, $state, $injector, state = 'reviews.new';
-    var Product = { get : function(){}};
     var product = {};
     var productId = 5;
 
     beforeEach(function () {
-      sinon.stub(Product,"get").withArgs(3).returns(product);
-
       module(function ($provide) {
-        $provide.value('Product', Product);
+        $provide.value('Product', {
+          get: function (id) {
+            if (id == productId) {
+              return product;
+            }
+          }
+        });
       });
 
       inject(function (_$rootScope_, _$state_, _$injector_, $templateCache) {
@@ -73,7 +76,6 @@ describe('new review section', function () {
     });
 
     it('should resolve data', function () {
-
       $rootScope.$apply(function () {
         $state.go(state, {productId: productId});
       });

@@ -16,8 +16,6 @@ describe('reviews list section', function () {
 
   describe('/reviews/list', function () {
     var $rootScope, $state, $injector, state = 'reviews.list';
-    var Product = {};
-    var products = {};
 
     beforeEach(function () {
       inject(function (_$rootScope_, _$state_, _$injector_, $templateCache) {

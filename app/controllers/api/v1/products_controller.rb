@@ -1,5 +1,5 @@
 class Api::V1::ProductsController < ApplicationController
-  before_filter :authenticate_user! , :only => [:create]
+  before_filter :authenticate_user! , :except => [:index,:show]
   authorize_resource
 
   def index
@@ -10,10 +10,6 @@ class Api::V1::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     render :json => @product
-  end
-
-  def create
-
   end
 
 end
