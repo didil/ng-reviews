@@ -73,9 +73,11 @@ module.exports = {
       'vendor/angularfire/angularfire.js',
       'vendor/moment/moment.js',
       'vendor/angular-moment/angular-moment.js',
-      'vendor/angularjs-rails-resource/angularjs-rails-resource.js'
+      'vendor/angularjs-rails-resource/angularjs-rails-resource.js',
+      'vendor/angular-busy/dist/angular-busy.js'
     ],
     css: [
+      'vendor/angular-busy/dist/angular-busy.css'
     ],
     assets: [
     ]

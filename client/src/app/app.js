@@ -4,6 +4,7 @@ angular.module('ngReviews', [
   'ngReviews.products',
   'ngReviews.reviews',
   'ui.router',
+  'cgBusy',
   'ngAnimate'
 ])
   .config(function ($stateProvider, $urlRouterProvider) {
