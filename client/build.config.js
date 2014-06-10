@@ -77,7 +77,7 @@ module.exports = {
       'vendor/angular-busy/dist/angular-busy.js'
     ],
     css: [
-      'vendor/angular-busy/dist/angular-busy.css'
+
     ],
     assets: [
     ]
