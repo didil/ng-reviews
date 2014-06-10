@@ -1,22 +1,39 @@
 describe('new review section', function () {
   beforeEach(module('ngReviews.reviews'));
 
+  var productId = 5;
+
   describe('ReviewNewCtrl', function () {
-    var $scope = {};
-    var product = {id: 3, name: "My Product"};
+    var $scope;
+    var productPromise;
+    var product = {id: productId, name: "My Product"};
     var addStub;
     var goStub;
 
-    beforeEach(inject(function ($controller, Review, $state) {
+    beforeEach(inject(function ($controller, Review, Product, $state, $q, $rootScope, $stateParams) {
+      var defer = $q.defer();
+      defer.resolve(product);
+      productPromise = defer.promise;
+      var cb = sinon.stub(Product,"get");
+      cb.withArgs(productId).returns(productPromise);
+
       addStub = sinon.stub(Review, "$add");
       goStub = sinon.stub($state, "go");
 
-      $controller('ReviewsNewCtrl', { $scope: $scope, product: product });
+      $scope = $rootScope.$new();
+
+      $stateParams.productId = productId;
+
+      $controller('ReviewsNewCtrl', { $scope: $scope, $stateParams: $stateParams });
     }));
 
-    it('should assign products', inject(function () {
+    it('should assign product', inject(function () {
+      expect($scope.productPromise).to.equal(productPromise);
+      expect($scope.review).to.deep.equal({});
+
+      $scope.$digest();
+
       expect($scope.product).to.equal(product);
-      expect($scope.review).to.deep.equal({productId: product.id});
     }));
 
     describe("saves", function () {
@@ -25,8 +42,9 @@ describe('new review section', function () {
       });
 
       it('saves review', inject(function () {
-        $scope.review = {quality: 5, productId: product.id};
+        $scope.review = {quality: 5};
 
+        $scope.$digest();
         $scope.save();
 
         expect($scope.review.quality).to.equal(5);
@@ -47,20 +65,8 @@ describe('new review section', function () {
 
   describe('/reviews/new', function () {
     var $rootScope, $state, $injector, state = 'reviews.new';
-    var product = {};
-    var productId = 5;
 
     beforeEach(function () {
-      module(function ($provide) {
-        $provide.value('Product', {
-          get: function (id) {
-            if (id == productId) {
-              return product;
-            }
-          }
-        });
-      });
-
       inject(function (_$rootScope_, _$state_, _$injector_, $templateCache) {
         $rootScope = _$rootScope_;
         $state = _$state_;
@@ -81,8 +87,6 @@ describe('new review section', function () {
       });
 
       expect($state.current.name).to.equal(state);
-      // Call invoke to inject dependencies and run function
-      expect($injector.invoke($state.current.resolve.product)).to.equal(product);
     });
   });
 

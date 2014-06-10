@@ -29,13 +29,13 @@ describe('products section', function () {
     var products = {};
 
     beforeEach(function () {
-      module(function ($provide) {
+   /*   module(function ($provide) {
         $provide.value('Product', {
           query: function () {
             return products;
           }
         });
-      });
+      });*/
 
       inject(function (_$rootScope_, _$state_, _$injector_, $templateCache) {
         $rootScope = _$rootScope_;
