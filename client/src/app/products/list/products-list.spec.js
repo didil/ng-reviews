@@ -2,14 +2,24 @@ describe('products section', function () {
   beforeEach(module('ngReviews.products'));
 
   describe('ProductsListCtrl', function () {
-    var $scope = {};
+    var $scope ;
+    var productsPromise;
     var products = [];
 
-    beforeEach(inject(function ($controller) {
-      $controller('ProductsListCtrl', {$scope: $scope, products: products});
+    beforeEach(inject(function ($q, $controller, Product , $rootScope) {
+      var defer = $q.defer();
+      productsPromise = defer.promise;
+      defer.resolve(products);
+      sinon.stub(Product, "query").returns(productsPromise);
+
+      $scope = $rootScope.$new();
+
+      $controller('ProductsListCtrl', {$scope: $scope});
     }));
 
     it('should assign products', inject(function () {
+      expect($scope.productsPromise).to.equal(productsPromise);
+      $scope.$digest();
       expect($scope.products).to.equal(products);
     }));
   });
@@ -48,7 +58,7 @@ describe('products section', function () {
 
       expect($state.current.name).to.equal(state);
       // Call invoke to inject dependencies and run function
-      expect($injector.invoke($state.current.resolve.products)).to.equal(products);
+      //  expect($injector.invoke($state.current.resolve.products)).to.equal(products);
     });
   });
 

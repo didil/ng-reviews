@@ -7,15 +7,13 @@ angular.module('ngReviews.products.list', [
       url: '/products/list',
       controller: 'ProductsListCtrl',
       templateUrl: 'products/list/products-list.tpl.html',
-      data: { pageTitle: 'Products List' },
-      resolve: {
-        products: ['Product', function (Product) {
-          return Product.query();
-        }]
-      }
+      data: { pageTitle: 'Products List' }
     });
   })
-  .controller('ProductsListCtrl', function ($scope, products) {
-    $scope.products = products;
+  .controller('ProductsListCtrl', function ($scope, Product) {
+    $scope.productsPromise = Product.query();
+    $scope.productsPromise.then(function (products) {
+      $scope.products = products;
+    });
   });
 
