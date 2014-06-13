@@ -560,7 +560,7 @@ module.exports = function (grunt) {
         },
         proxies: [
           {
-            context: '/api',
+            context: ['/api', '/users'],
             host: 'localhost',
             port: 3100,
             https: false,

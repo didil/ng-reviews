@@ -1,0 +1,11 @@
+<ul class="nav navbar-nav pull-right">
+  <li ng-show="isAuthenticated()">
+    <a href>{{currentUser.name}}</a>
+  </li>
+  <li ng-show="isAuthenticated()" class="logout">
+    <a href class="logout" ng-click="logout()">Log out</a>
+  </li>
+  <li ng-hide="isAuthenticated()" class="login">
+    <a href class="login" ng-click="login()">Log in</a>
+  </li>
+</ul>
