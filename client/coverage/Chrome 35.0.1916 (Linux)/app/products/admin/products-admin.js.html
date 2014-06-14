@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for app/reviews/new/reviews-new.js</title>
+    <title>Code coverage report for app/products/admin/products-admin.js</title>
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="../../../prettify.css">
@@ -195,24 +195,24 @@
     </style>
 </head>
 <body>
-<div class="header high">
-    <h1>Code coverage report for <span class="entity">app/reviews/new/reviews-new.js</span></h1>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">app/products/admin/products-admin.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">100% <small>(12 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">20% <small>(2 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">100% <small>(4 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">16.67% <small>(1 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">100% <small>(12 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">20% <small>(2 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">app/reviews/new/</a> &#187; reviews-new.js</div>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">app/products/admin/</a> &#187; products-admin.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
@@ -245,17 +245,13 @@
 27
 28
 29
-30
-31
-32
-33</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+30</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">7</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -263,52 +259,47 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('ngReviews.reviews.new', [
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('ngReviews.products.admin', [
   'ui.router',
-  'ui.bootstrap',
-  'resources.review',
-  'resources.product'
+  'resources.product',
+  'dialogs.main'
 ])
-  .config(function config($stateProvider) {
-    $stateProvider.state('reviews.new', {
-      url: '/reviews/new/:productId',
-      controller: 'ReviewsNewCtrl',
-      templateUrl: 'reviews/new/reviews-new.tpl.html',
-      data: { pageTitle: 'New Review' }
+  .config(function ($stateProvider) {
+    $stateProvider.state('products.admin', {
+      url: '/products/admin',
+      controller: 'ProductsAdminCtrl',
+      templateUrl: 'products/admin/products-admin.tpl.html',
+      data: { pageTitle: 'Products Admin' }
     });
   })
-  .controller('ReviewsNewCtrl', function ($scope, $state, Product, Review , $stateParams) {
-    $scope.productPromise = Product.get($stateParams.productId);
-    $scope.productPromise.then(function(product){
-      $scope.product = product;
+  .controller('ProductsAdminCtrl', <span class="fstat-no" title="function not covered" >function ($scope, Product,dialogs) {</span>
+<span class="cstat-no" title="statement not covered" >    $scope.productsPromise = Product.query();</span>
+<span class="cstat-no" title="statement not covered" >    $scope.productsPromise.then(<span class="fstat-no" title="function not covered" >function (products) {</span></span>
+<span class="cstat-no" title="statement not covered" >      $scope.products = products;</span>
     });
 &nbsp;
-    $scope.review = {};
-&nbsp;
-    $scope.save = function () {
-      $scope.review.productId = $scope.product.id;
-      $scope.review.productName = $scope.product.name;
-      $scope.review.createdAt = new Date();
-&nbsp;
-      Review.$add($scope.review);
-      $state.go('reviews.list');
+<span class="cstat-no" title="statement not covered" >    $scope.destroy = <span class="fstat-no" title="function not covered" >function (product) {</span></span>
+<span class="cstat-no" title="statement not covered" >      var dlg = dialogs.confirm("Delete Product ?", "Are you sure you want to delete this product ?");</span>
+<span class="cstat-no" title="statement not covered" >      dlg.result.then(<span class="fstat-no" title="function not covered" >function(btn){</span></span>
+<span class="cstat-no" title="statement not covered" >        product.remove().then(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >          $scope.products.splice( $scope.products.indexOf(product), 1 );</span>
+        });
+      });
     };
   });
 &nbsp;

@@ -12,7 +12,8 @@
     "angularfire": "~0.7.1",
     "angular-moment": "~0.7.1",
     "angularjs-rails-resource": "~1.2.0",
-    "angular-busy": "~4.0.4"
+    "angular-busy": "~4.0.4",
+    "angular-dialog-service": "~5.0.0"
   },
   "dependencies": {}
 }

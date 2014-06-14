@@ -74,7 +74,10 @@ module.exports = {
       'vendor/moment/moment.js',
       'vendor/angular-moment/angular-moment.js',
       'vendor/angularjs-rails-resource/angularjs-rails-resource.js',
-      'vendor/angular-busy/dist/angular-busy.js'
+      'vendor/angular-busy/dist/angular-busy.js',
+      'vendor/angular-sanitize/angular-sanitize.js',
+      'vendor/angular-translate/angular-translate.js',
+      'vendor/angular-dialog-service/dialogs.js'
     ],
     css: [
 

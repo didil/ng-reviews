@@ -16,7 +16,10 @@ API Backend :
 - Postgres DB
 - Rspec for testing
 
-Live at http://ng-reviews.herokuapp.com
+Demo Live at http://ng-reviews.herokuapp.com
+Admin credentials :
+email : admin@example.com
+password : changeme
 
 ### Credits
 

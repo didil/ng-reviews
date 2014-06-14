@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>Products Admin</h1>
+  </div>
+</div>
+<div class="row">
+  <div cg-busy="productsPromise"></div>
+  <div class="col-md-12 admin_product_container admin-product-animate" ng-repeat="product in products">
+    <div class="well admin_product_container_well">
+      {{product.name}}
+
+      <button href class="delete_btn btn btn-danger btn-xs" ng-click="destroy(product)"><i class="fa fa-times"></i></button>
+    </div>
+  </div>
+</div>
