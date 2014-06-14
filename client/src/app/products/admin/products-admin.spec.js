@@ -31,6 +31,7 @@ describe('products section', function () {
 
   describe('ProductsAdminCtrl', function () {
     var $scope;
+    var dialogs;
     var productsPromise;
     var product1 = {};
     var product2 = {};
@@ -43,17 +44,23 @@ describe('products section', function () {
       sinon.stub(Product, "query").returns(productsPromise);
     }
 
-    function mockDialog(dialogs){
+    function mockDialog(dialogs, confirmed) {
       var defer = $q.defer();
       var resultPromise = defer.promise;
+      if (confirmed) {
+        defer.resolve();
+      } else {
+        defer.reject();
+      }
       defer.resolve();
 
       var dlg = {result: resultPromise};
       sinon.stub(dialogs, "confirm").returns(dlg);
     }
 
-    beforeEach(inject(function ($q, $controller, Product, $rootScope, dialogs) {
+    beforeEach(inject(function ($q, $controller, Product, $rootScope, _dialogs_) {
       mockProductQuery($q, Product);
+      dialogs = _dialogs_;
       mockDialog(dialogs);
 
       $scope = $rootScope.$new();
@@ -67,9 +74,23 @@ describe('products section', function () {
       expect($scope.products).to.equal(products);
     }));
 
-    it('should delete product', inject(function () {
-     throw "Pending test";
-    }));
+    describe("delete product", function () {
+      describe("confirmed", function () {
+        beforeEach(function () {
+          mockDialog(dialogs);
+        });
+
+        it('should delete product', inject(function () {
+          throw "Pending test";
+        }));
+
+      });
+
+      describe("not confirmed", function () {
+
+      });
+    });
+
 
   });
 
