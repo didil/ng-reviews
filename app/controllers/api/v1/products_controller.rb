@@ -1,6 +1,6 @@
 class Api::V1::ProductsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :set_product , :only => [:show , :destroy]
+  before_filter :set_product, :only => [:show, :destroy]
   authorize_resource
 
   def index
@@ -14,6 +14,11 @@ class Api::V1::ProductsController < ApplicationController
 
   def destroy
     @product.destroy
+    render :json => true
+  end
+
+  def reset
+    ResetProductsService.new.reset
     render :json => true
   end
 

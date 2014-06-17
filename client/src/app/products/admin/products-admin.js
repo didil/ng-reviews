@@ -12,10 +12,14 @@ angular.module('ngReviews.products.admin', [
     });
   })
   .controller('ProductsAdminCtrl', function ($scope, Product,dialogs) {
-    $scope.productsPromise = Product.query();
-    $scope.productsPromise.then(function (products) {
-      $scope.products = products;
-    });
+    var ctrl = this ;
+
+    this.refresh = function(){
+      $scope.productsPromise = Product.query();
+      $scope.productsPromise.then(function (products) {
+        $scope.products = products;
+      });
+    };
 
     $scope.destroy = function (product) {
       var dlg = dialogs.confirm("Delete Product ?", "Are you sure you want to delete this product ?");
@@ -25,5 +29,14 @@ angular.module('ngReviews.products.admin', [
         });
       });
     };
+
+    $scope.reset = function(){
+      $scope.products = null;
+      Product.reset().then(function(){
+        ctrl.refresh();
+      });
+    };
+
+    $scope.refresh();
   });
 

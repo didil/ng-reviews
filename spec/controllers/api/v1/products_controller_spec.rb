@@ -28,9 +28,10 @@ describe Api::V1::ProductsController do
 
   context "admin" do
     before do
-      @user = FactoryGirl.create(:admin)
+      @user = create(:admin)
       sign_in @user
     end
+
     describe "destroy" do
       before { allow(Product).to receive(:find).with(id) { product } }
 
@@ -39,9 +40,16 @@ describe Api::V1::ProductsController do
         delete :destroy, :id => id
         expect(response.body).to eq("true")
       end
-
     end
-  end
 
+    describe "resets" do
+      before { expect(ResetProductsService).to receive_message_chain(:new, :reset) { product } }
+      it "ok" do
+        post :reset
+        expect(response.body).to eq("true")
+      end
+    end
+
+  end
 
 end

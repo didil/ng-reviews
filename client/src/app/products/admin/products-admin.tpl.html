@@ -1,6 +1,10 @@
 <div class="row">
   <div class="col-md-12">
-    <h1>Products Admin</h1>
+    <h1>
+      Products Admin
+      <button class="btn btn-info" ng-click="reset()">Reset Data</button>
+    </h1>
+
   </div>
 </div>
 <div class="row">
@@ -9,7 +13,8 @@
     <div class="well admin_product_container_well">
       {{product.name}}
 
-      <button href class="delete_btn btn btn-danger btn-xs" ng-click="destroy(product)"><i class="fa fa-times"></i></button>
+      <button href class="delete_btn btn btn-danger btn-xs" ng-click="destroy(product)"><i class="fa fa-times"></i>
+      </button>
     </div>
   </div>
 </div>

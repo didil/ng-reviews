@@ -1,22 +1,32 @@
 describe('product resource', function () {
+  var $httpBackend , Product;
+
   beforeEach(module('resources.product'));
 
-  /*function compareToProduct1(product){
-    expect(product.id).to.equal(1);
-    expect(product.name).to.equal("Grado PS1000 Pro Series Headphone");
-    expect(product.imageUrl).to.equal("assets/41GzNqk3xrL._AA160_.jpg");
-  }
-
-  it('query', inject(function (Product) {
-    var products = Product.query();
-
-    expect(products.length).to.equal(3);
-    compareToProduct1(products[0]);
+  beforeEach(inject(function (_$httpBackend_, _Product_) {
+    $httpBackend = _$httpBackend_;
+    Product = _Product_;
   }));
 
-  it('get', inject(function (Product) {
-    var product = Product.get({id:1});
+  describe("resets", function () {
+    beforeEach(function () {
+      $httpBackend.when('POST', '/api/v1/products/reset').respond("true");
+    });
 
-    compareToProduct1(product);
-  }));*/
+    it("posts reset", function () {
+      var promise = Product.reset();
+      $httpBackend.flush();
+
+      promise.then(function(response){
+        expect(response).to.eq("true");
+      });
+    });
+
+    afterEach(function() {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+    });
+
+  });
+
 });

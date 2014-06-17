@@ -30,18 +30,24 @@ describe('products section', function () {
   });
 
   describe('ProductsAdminCtrl', function () {
-    var $scope;
-    var dialogs;
+    var $scope , $q , dialogs, Product;
     var productsPromise;
-    var product1 = {};
-    var product2 = {};
+    var product1 = {id: 1};
+    var product2 = {id: 2};
     var products = [product1, product2];
 
-    function mockProductQuery($q, Product) {
+    function mockProductQuery() {
       var defer = $q.defer();
       productsPromise = defer.promise;
       defer.resolve(products);
       sinon.stub(Product, "query").returns(productsPromise);
+    }
+
+    function mockProductReset() {
+      var defer = $q.defer();
+      resetPromise = defer.promise;
+      defer.resolve();
+      sinon.stub(Product, "reset").returns(resetPromise);
     }
 
     function mockDialog(dialogs, confirmed) {
@@ -58,39 +64,71 @@ describe('products section', function () {
       sinon.stub(dialogs, "confirm").returns(dlg);
     }
 
-    beforeEach(inject(function ($q, $controller, Product, $rootScope, _dialogs_) {
-      mockProductQuery($q, Product);
+    beforeEach(inject(function (_$q_, $controller, _Product_, $rootScope, _dialogs_) {
       dialogs = _dialogs_;
-      mockDialog(dialogs);
+      $q = _$q_;
+      Product = _Product_;
+
+      mockProductQuery();
 
       $scope = $rootScope.$new();
 
       $controller('ProductsAdminCtrl', {$scope: $scope});
+      $scope.$apply();
     }));
 
     it('should assign products', inject(function () {
       expect($scope.productsPromise).to.equal(productsPromise);
-      $scope.$apply();
       expect($scope.products).to.equal(products);
     }));
 
     describe("delete product", function () {
+      beforeEach(function () {
+        product1.remove = function () {
+          return {then: function (fn) {
+            fn();
+          }};
+        };
+      });
+
       describe("confirmed", function () {
         beforeEach(function () {
-          mockDialog(dialogs);
+          mockDialog(dialogs, true);
         });
 
         it('should delete product', inject(function () {
-          throw "Pending test";
+          $scope.destroy(product1);
+          $scope.$apply();
+          expect($scope.products).to.deep.eq([product2]);
         }));
-
       });
 
       describe("not confirmed", function () {
+        beforeEach(function () {
+          mockDialog(dialogs, false);
+        });
 
+        it('should delete product', inject(function () {
+          $scope.destroy(product1);
+          $scope.$apply();
+          expect($scope.products).to.equal(products);
+        }));
       });
     });
 
+    describe('resets products', function () {
+      beforeEach(function () {
+        mockProductReset();
+      });
+
+      it('should reset products', inject(function () {
+        $scope.products = [product1];
+        $scope.reset();
+        $scope.$apply();
+        expect($scope.products).to.equal(products);
+      }));
+
+    });
 
   });
 
