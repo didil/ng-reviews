@@ -195,20 +195,20 @@
     </style>
 </head>
 <body>
-<div class="header low">
+<div class="header medium">
     <h1>Code coverage report for <span class="entity">common/security/authorization.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">7.69% <small>(1 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">50% <small>(6 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">0% <small>(0 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">0% <small>(0 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">50% <small>(4 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">7.69% <small>(1 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">50% <small>(6 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -272,88 +272,88 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('security.authorization', ['security.service'])
 &nbsp;
 // This service provides guard methods to support AngularJS routes.
 // You can add them as resolves to routes to require authorization levels
 // before allowing a route change to complete
-.provider('securityAuthorization', {
+  .provider('securityAuthorization', {
 &nbsp;
-  requireAdminUser: ['securityAuthorization', <span class="fstat-no" title="function not covered" >function(securityAuthorization) {</span>
-<span class="cstat-no" title="statement not covered" >    return securityAuthorization.requireAdminUser();</span>
-  }],
+    requireAdminUser: ['securityAuthorization', <span class="fstat-no" title="function not covered" >function (securityAuthorization) {</span>
+<span class="cstat-no" title="statement not covered" >      return securityAuthorization.requireAdminUser();</span>
+    }],
 &nbsp;
-  requireAuthenticatedUser: ['securityAuthorization', <span class="fstat-no" title="function not covered" >function(securityAuthorization) {</span>
-<span class="cstat-no" title="statement not covered" >    return securityAuthorization.requireAuthenticatedUser();</span>
-  }],
+    requireAuthenticatedUser: ['securityAuthorization', function (securityAuthorization) {
+      return securityAuthorization.requireAuthenticatedUser();
+    }],
 &nbsp;
-  $get: ['security', 'securityRetryQueue', <span class="fstat-no" title="function not covered" >function(security, queue) {</span>
-<span class="cstat-no" title="statement not covered" >    var service = {</span>
+    $get: ['security', 'securityRetryQueue', function (security, queue) {
+      var service = {
 &nbsp;
-      // Require that there is an authenticated user
-      // (use this in a route resolve to prevent non-authenticated users from entering that route)
-      requireAuthenticatedUser: <span class="fstat-no" title="function not covered" >function() {</span>
-<span class="cstat-no" title="statement not covered" >        var promise = security.requestCurrentUser().then(<span class="fstat-no" title="function not covered" >function(userInfo) {</span></span>
-<span class="cstat-no" title="statement not covered" >          if ( !security.isAuthenticated() ) {</span>
+        // Require that there is an authenticated user
+        // (use this in a route resolve to prevent non-authenticated users from entering that route)
+        requireAuthenticatedUser: function () {
+          var promise = security.requestCurrentUser().then(function () {
+            // Auth ok
+          }, <span class="fstat-no" title="function not covered" >function () {</span>
 <span class="cstat-no" title="statement not covered" >            return queue.pushRetryFn('unauthenticated-client', service.requireAuthenticatedUser);</span>
-          }
-        });
-<span class="cstat-no" title="statement not covered" >        return promise;</span>
-      },
+          });
+          return promise;
+        },
 &nbsp;
-      // Require that there is an administrator logged in
-      // (use this in a route resolve to prevent non-administrators from entering that route)
-      requireAdminUser: <span class="fstat-no" title="function not covered" >function() {</span>
-<span class="cstat-no" title="statement not covered" >        var promise = security.requestCurrentUser().then(<span class="fstat-no" title="function not covered" >function(userInfo) {</span></span>
-<span class="cstat-no" title="statement not covered" >          if ( !security.isAdmin() ) {</span>
-<span class="cstat-no" title="statement not covered" >            return queue.pushRetryFn('unauthorized-client', service.requireAdminUser);</span>
-          }
-        });
-<span class="cstat-no" title="statement not covered" >        return promise;</span>
-      }
+        // Require that there is an administrator logged in
+        // (use this in a route resolve to prevent non-administrators from entering that route)
+        requireAdminUser: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >          var promise = security.requestCurrentUser().then(<span class="fstat-no" title="function not covered" >function (userInfo) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (!security.isAdmin()) {</span>
+<span class="cstat-no" title="statement not covered" >              return queue.pushRetryFn('unauthorized-client', service.requireAdminUser);</span>
+            }
+          });
+<span class="cstat-no" title="statement not covered" >          return promise;</span>
+        }
 &nbsp;
-    };
+      };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return service;</span>
-  }]
-});</pre></td></tr>
+      return service;
+    }]
+  });</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 17 2014 11:03:30 GMT-0500 (CDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 17 2014 17:33:38 GMT-0500 (CDT)</div>
 </div>
 
 <script src="../../prettify.js"></script>

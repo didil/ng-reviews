@@ -1,6 +1,5 @@
 angular.module('resources.product', ['rails'])
   .factory('Product', function (railsResourceFactory) {
-
     var baseUrl = '/api/v1/products';
 
     var Product = railsResourceFactory({

@@ -77,7 +77,8 @@ module.exports = {
       'vendor/angular-busy/dist/angular-busy.js',
       'vendor/angular-sanitize/angular-sanitize.js',
       'vendor/angular-translate/angular-translate.js',
-      'vendor/angular-dialog-service/dialogs.js'
+      'vendor/angular-dialog-service/dialogs.js',
+      'vendor/angular-xeditable/dist/js/xeditable.js'
     ],
     css: [
 

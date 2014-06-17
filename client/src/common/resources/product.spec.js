@@ -15,6 +15,7 @@ describe('product resource', function () {
 
     it("posts reset", function () {
       var promise = Product.reset();
+
       $httpBackend.flush();
 
       promise.then(function(response){
@@ -28,5 +29,4 @@ describe('product resource', function () {
     });
 
   });
-
 });

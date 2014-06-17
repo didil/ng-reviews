@@ -6,7 +6,8 @@ angular.module('ngReviews', [
   'ui.router',
   'cgBusy',
   'ngAnimate',
-  'security'
+  'security',
+  'xeditable'
 ])
 
   .constant('I18N.MESSAGES', {
@@ -21,10 +22,12 @@ angular.module('ngReviews', [
     $urlRouterProvider.otherwise('/products/list');
   })
 
-  .run(function (security) {
+  .run(function (security, editableOptions) {
     // Get the current user when the application starts
     // (in case they are still logged in from a previous session)
     security.requestCurrentUser();
+
+    editableOptions.theme = 'bs3';
   })
 
   .controller('AppCtrl', function ($scope) {

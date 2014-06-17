@@ -11,8 +11,7 @@
   <div cg-busy="productsPromise"></div>
   <div class="col-md-12 admin_product_container admin-product-animate" ng-repeat="product in products">
     <div class="well admin_product_container_well">
-      {{product.name}}
-
+      <a href="#" editable-text="product.name" onbeforesave="update(product, $data)">{{ product.name || "empty" }}</a>
       <button href class="delete_btn btn btn-danger btn-xs" ng-click="destroy(product)"><i class="fa fa-times"></i>
       </button>
     </div>

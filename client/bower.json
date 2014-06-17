@@ -13,7 +13,8 @@
     "angular-moment": "~0.7.1",
     "angularjs-rails-resource": "~1.2.0",
     "angular-busy": "~4.0.4",
-    "angular-dialog-service": "~5.0.0"
+    "angular-dialog-service": "~5.0.0",
+    "angular-xeditable": "~0.1.8"
   },
   "dependencies": {}
 }
