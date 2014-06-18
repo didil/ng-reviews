@@ -3,7 +3,8 @@ angular.module('ngReviews.products.admin', [
   'resources.product',
   'dialogs.main',
   'xeditable',
-  'security'
+  'security',
+  'ddConfirmClick'
 ])
   .config(function ($stateProvider, securityAuthorizationProvider) {
     $stateProvider.state('products.admin', {
