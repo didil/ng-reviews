@@ -1,6 +1,6 @@
 class Api::V1::ProductsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :set_product, :only => [:show, :destroy , :update]
+  before_filter :set_product, :only => [:show, :destroy, :update]
   authorize_resource
 
   def index
@@ -30,6 +30,16 @@ class Api::V1::ProductsController < ApplicationController
     end
   end
 
+  def create
+    @product = Product.new(product_params)
+
+    if @product.save
+      render :json => @product
+    else
+      render json: @product.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_product
@@ -37,7 +47,7 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name)
+    params.require(:product).permit(:name, :image_url)
   end
 
 end

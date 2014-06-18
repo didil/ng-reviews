@@ -11,5 +11,9 @@ angular.module('resources.product', ['rails'])
       return Product.$post(baseUrl + '/reset');
     };
 
+    Product.create = function (attrs) {
+      return (new Product(attrs)).create();
+    };
+
     return  Product;
   });

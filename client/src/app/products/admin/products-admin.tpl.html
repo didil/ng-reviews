@@ -2,11 +2,17 @@
   <div class="col-md-12">
     <h1>
       Products Admin
-      <button class="btn btn-info" ng-click="reset()">Reset Data</button>
+      <button class="btn btn-danger" ng-click="reset()">Reset Data</button>
+      <form name="newProductForm" class="form-inline pull-right" ng-submit="create()" novalidate>
+        <input class="form-control" type="text" ng-model="product.name" required/>
+        <button class="btn btn-primary" type="submit" ng-disabled="newProductForm.$invalid || isCreatingProduct">Create Product</button>
+        <div cg-busy="productCreatePromise"></div>
+      </form>
     </h1>
 
   </div>
 </div>
+
 <div class="row">
   <div cg-busy="productsPromise"></div>
   <div class="col-md-12 admin_product_container admin-product-animate" ng-repeat="product in products">

@@ -53,6 +53,19 @@ angular.module('ngReviews.products.admin', [
       return defer.promise;
     };
 
+    $scope.create = function () {
+      $scope.isCreatingProduct = true;
+      $scope.productCreatePromise = Product.create({
+        name: $scope.product.name
+      });
+      $scope.productCreatePromise.then(function (product) {
+        $scope.isCreatingProduct = false;
+        $scope.product.name = "";
+        $scope.products.push(product);
+      }, function () {
+        $scope.isCreatingProduct = false;
+      });
+    };
+
     ctrl.refresh();
   });
-

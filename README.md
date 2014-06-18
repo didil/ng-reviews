@@ -23,5 +23,17 @@ Admin credentials :
 email : admin@example.com
 password : changeme
 
+## Features
+- Regular Users
+    - View the products list
+    - Leave a review for a product
+    - View the reviews list after reviewing a product    
+    
+- Authenticated Users
+    - Create a product
+    - Rename a product
+    - Delete a product
+    - Reset the products DB
+
 ### Credits
 Adil Haritah - 2014

@@ -18,15 +18,34 @@ describe('product resource', function () {
 
       $httpBackend.flush();
 
-      promise.then(function(response){
+      promise.then(function (response) {
         expect(response).to.eq("true");
       });
     });
+  });
 
-    afterEach(function() {
-      $httpBackend.verifyNoOutstandingExpectation();
-      $httpBackend.verifyNoOutstandingRequest();
+
+  describe("creates", function () {
+    var attrs = {name: "My name"};
+
+    beforeEach(function () {
+      $httpBackend.when('POST', '/api/v1/products', {product: attrs}).respond("true");
     });
 
+    it("posts create", function () {
+      var promise = Product.create(attrs);
+
+      $httpBackend.flush();
+
+      promise.then(function (product) {
+        expect(product.name).to.eq(attrs.name);
+      });
+    });
   });
+
+  afterEach(function () {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  });
+
 });

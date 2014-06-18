@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Api::V1::ProductsController do
 
   let(:id) { "5" }
-  let(:product) { build(:product) }
+  let!(:product) { build(:product) }
 
   describe "index" do
     let(:products) { build_list(:product, 2) }
@@ -32,13 +32,41 @@ describe Api::V1::ProductsController do
       sign_in @user
     end
 
-
     describe "resets" do
       before { expect(ResetProductsService).to receive_message_chain(:new, :reset) { product } }
       it "ok" do
         post :reset
         expect(response.body).to eq("true")
       end
+    end
+
+    describe "creates" do
+      let(:attrs) { {"name" => "My product"} }
+      before { expect(Product).to receive(:new).with(attrs) { product } }
+
+      context "ok" do
+        before { expect(product).to receive(:save) { true } }
+        it "saves" do
+          post :create, :id => id, :product => attrs
+          expect(response.body).to eq( ProductSerializer.new(product).to_json)
+        end
+      end
+
+      context "errors" do
+        let(:errors) { {name: ["error"]} }
+        before do
+          expect(product).to receive(:save) { false }
+          allow(product).to receive(:errors) { errors }
+        end
+
+        it "does not save" do
+          post :create, :id => id, :product => attrs
+          expect(response.body).to eq(errors.to_json)
+          expect(response).to be_unprocessable
+        end
+      end
+
+
     end
 
     context "with product" do
@@ -64,10 +92,10 @@ describe Api::V1::ProductsController do
         end
 
         context "fails" do
-          let(:errors) {  {name: ["error"]}}
+          let(:errors) { {name: ["error"]} }
           before do
             expect(product).to receive(:update).with(attrs) { false }
-            allow(product).to receive(:errors) {errors }
+            allow(product).to receive(:errors) { errors }
           end
 
           it "updates" do

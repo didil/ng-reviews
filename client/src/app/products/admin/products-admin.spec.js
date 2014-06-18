@@ -43,10 +43,9 @@ describe('products section', function () {
     function mockProductQuery() {
       var defer = $q.defer();
       productsPromise = defer.promise;
-      defer.resolve(products);
+      defer.resolve(products.slice());
       sinon.stub(Product, "query").returns(productsPromise);
     }
-
 
     beforeEach(inject(function (_$q_, $controller, _Product_, $rootScope) {
       $q = _$q_;
@@ -62,7 +61,7 @@ describe('products section', function () {
 
     it('should assign products', inject(function () {
       expect($scope.productsPromise).to.equal(productsPromise);
-      expect($scope.products).to.equal(products);
+      expect($scope.products).to.deep.eq(products);
     }));
 
     describe("delete product", function () {
@@ -98,7 +97,7 @@ describe('products section', function () {
         $scope.products = [product1];
         $scope.reset();
         $scope.$apply();
-        expect($scope.products).to.equal(products);
+        expect($scope.products).to.deep.eq([product1, product2]);
       });
 
       afterEach(function () {
@@ -164,6 +163,58 @@ describe('products section', function () {
 
       afterEach(function () {
         angular.copy.restore();
+      });
+
+    });
+
+    describe("creates", function () {
+      var name = "new product";
+      var product = {name: name};
+      var createPromise;
+
+      function mockProductCreate(ok) {
+        var defer = $q.defer();
+        createPromise = defer.promise;
+        if (ok) {
+          defer.resolve(product);
+        }
+        else {
+          defer.reject({data: {name: ["error"]}});
+        }
+
+        Product.create = function (attrs) {
+          if (attrs.name == name) {
+            return  createPromise;
+          }
+        };
+      }
+
+      describe("ok", function () {
+        beforeEach(function () {
+          mockProductCreate(true);
+        });
+
+        it("creates product", function () {
+          $scope.product = {name: name };
+          $scope.create();
+          $scope.$apply();
+          expect($scope.products).to.deep.eq([product1, product2, product]);
+          $scope.isCreatingProduct.should.eq(false);
+        });
+      });
+
+      describe("fails", function () {
+        beforeEach(function () {
+          mockProductCreate(false);
+        });
+
+        it("creates product", function () {
+          $scope.product = {name: name };
+          $scope.create();
+          $scope.$apply();
+          expect($scope.products).to.deep.eq([product1, product2]);
+          $scope.isCreatingProduct.should.eq(false);
+        });
       });
 
     });
