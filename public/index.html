@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="ngReviews" ng-controller="AppCtrl">
+<head>
+  <title ng-bind="pageTitle"></title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- font awesome from BootstrapCDN -->
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <!-- compiled CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/ng-reviews-1.0.9.css"/>
+  
+
+  <!-- compiled JavaScript -->
+  <script type="text/javascript" src="assets/ng-reviews-1.0.9.js"></script>
+  
+
+</head>
+<body>
+
+<div ng-include="'header.tpl.html'"></div>
+
+<div id="main_ui_view_container" class="container">
+  <div ui-view="main"></div>
+</div>
+
+<div ng-include="'footer.tpl.html'"></div>
+
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 # [ngReviews]
 
-A product reviews site , built using:
+A product reviews site, built with the following stack:
 
 ## Client
 Single Page Application :
@@ -18,11 +18,10 @@ API Backend :
 - Rspec for testing
 - Devise/CanCan/Rolify for Authentification/Authorization
 
-Demo Live at http://ng-reviews.herokuapp.com
+Demo Live at http://ng-reviews.herokuapp.com (Products data is reset daily)
 Admin credentials :
 email : admin@example.com
 password : changeme
 
 ### Credits
-
 Adil Haritah - 2014

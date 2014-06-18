@@ -10,7 +10,7 @@ describe('products section', function () {
         $rootScope = _$rootScope_;
         $state = _$state_;
         $injector = _$injector_;
-        $httpBackend = _$httpBackend_ ;
+        $httpBackend = _$httpBackend_;
 
         $templateCache.put('products/products.tpl.html', '');
         $templateCache.put('products/admin/products-admin.tpl.html', '');
@@ -34,7 +34,7 @@ describe('products section', function () {
   });
 
   describe('ProductsAdminCtrl', function () {
-    var $scope , $q , dialogs, Product;
+    var $scope , $q , Product;
     var productsPromise, resetPromise;
     var product1 = {id: 1};
     var product2 = {id: 2};
@@ -48,8 +48,7 @@ describe('products section', function () {
     }
 
 
-    beforeEach(inject(function (_$q_, $controller, _Product_, $rootScope, _dialogs_) {
-      dialogs = _dialogs_;
+    beforeEach(inject(function (_$q_, $controller, _Product_, $rootScope) {
       $q = _$q_;
       Product = _Product_;
 
@@ -75,47 +74,12 @@ describe('products section', function () {
         };
       });
 
-      function mockDialog(dialogs, confirmed) {
-        var defer = $q.defer();
-        var resultPromise = defer.promise;
-        if (confirmed) {
-          defer.resolve();
-        } else {
-          defer.reject();
-        }
-        defer.resolve();
+      it('should delete product', inject(function () {
+        $scope.destroy(product1);
+        $scope.$apply();
+        expect($scope.products).to.deep.eq([product2]);
+      }));
 
-        var dlg = {result: resultPromise};
-        sinon.stub(dialogs, "confirm").returns(dlg);
-      }
-
-      describe("confirmed", function () {
-        beforeEach(function () {
-          mockDialog(dialogs, true);
-        });
-
-        it('should delete product', inject(function () {
-          $scope.destroy(product1);
-          $scope.$apply();
-          expect($scope.products).to.deep.eq([product2]);
-        }));
-      });
-
-      describe("not confirmed", function () {
-        beforeEach(function () {
-          mockDialog(dialogs, false);
-        });
-
-        it('should delete product', function () {
-          $scope.destroy(product1);
-          $scope.$apply();
-          expect($scope.products).to.equal(products);
-        });
-
-        afterEach(function () {
-          dialogs.confirm.restore();
-        });
-      });
     });
 
     describe('resets products', function () {

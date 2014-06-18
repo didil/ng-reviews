@@ -1,7 +1,6 @@
 angular.module('ngReviews.products.admin', [
   'ui.router',
   'resources.product',
-  'dialogs.main',
   'xeditable',
   'security',
   'ddConfirmClick'
@@ -17,7 +16,7 @@ angular.module('ngReviews.products.admin', [
       }
     });
   })
-  .controller('ProductsAdminCtrl', function ($scope, Product, dialogs, $q) {
+  .controller('ProductsAdminCtrl', function ($scope, Product, $q) {
     var ctrl = this;
 
     this.refresh = function () {
@@ -28,11 +27,8 @@ angular.module('ngReviews.products.admin', [
     };
 
     $scope.destroy = function (product) {
-      var dlg = dialogs.confirm("Delete Product ?", "Are you sure you want to delete this product ?");
-      dlg.result.then(function (btn) {
-        product.remove().then(function () {
-          $scope.products.splice($scope.products.indexOf(product), 1);
-        });
+      product.remove().then(function () {
+        $scope.products.splice($scope.products.indexOf(product), 1);
       });
     };
 
