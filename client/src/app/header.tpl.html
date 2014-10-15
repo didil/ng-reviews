@@ -17,6 +17,13 @@
             <li ng-if="isAuthenticated()"><a href ui-sref="products.admin">Admin</a></li>
           </ul>
         </li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reviews<span class="caret"></span></a>
+          <ul class="dropdown-menu" aria-labelledby="products">
+            <li><a href ui-sref="reviews.list">List</a></li>
+          </ul>
+        </li>
       </ul>
 
       <login-toolbar></login-toolbar>

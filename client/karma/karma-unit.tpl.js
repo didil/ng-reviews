@@ -18,7 +18,7 @@ module.exports = function (karma) {
       'src/assets/**/*.js'
     ],
     frameworks: [ 'mocha','sinon-chai' ],
-    plugins: [ 'karma-mocha', 'karma-sinon-chai', 'karma-chrome-launcher','karma-coverage' ],
+    plugins: [ 'karma-mocha', 'karma-sinon-chai', 'karma-phantomjs-launcher','karma-coverage' ],
     preprocessors: {
       'src/**/*.js': ['coverage']
     },
@@ -35,7 +35,7 @@ module.exports = function (karma) {
     urlRoot: '/',
     autoWatch: false,
     browsers: [
-      'Chrome'
+      'PhantomJS'
     ]
   });
 };
